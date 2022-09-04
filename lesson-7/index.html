@@ -11,6 +11,16 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+
+
+        <!-- React CDN -->
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+        <!-- Babel JS Compiler -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
     </head>
     <body>
         <h1>Awesomest Website</h1>
@@ -27,7 +37,34 @@
             </p>
 
         </footer>
+
+
         
-        <script src="" async defer></script>
+        <script type ="text/babel">
+
+            const Banner = () => {
+                const title = "Welcome to dis website"
+
+                const handleClick = (e) => {
+                    console.log('you clicked me')
+                    console.log('the site title is: ', title)
+                    console.log(e)
+                }
+
+                return (
+                    <div>
+                        <p>Banner</p>
+                        <p>{title}</p>
+                        <p>Today's date is: {new Date().toDateString()}</p>
+                        <button onClick = {handleClick} >Click Me </button>
+                    </div>
+                )
+            }
+                
+
+            // render the component to the DOM
+            ReactDOM.render(<Banner />, document.getElementById('banner'))
+
+        </script>
     </body>
 </html>
