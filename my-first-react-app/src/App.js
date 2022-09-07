@@ -1,21 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react'
+import Title from './components/Title'
+import Modal from './components/Modal'
+import EventList from './components/EventList'
+import NewEventForm from './components/NewEventForm';
+
 
 
 
 
 function App() {
   
+const [showModal, setShowModal] = useState(false)
 
   const [showEvents, setShowEvents] = useState(true)
   const [events, setEvents] = useState ([
-    {title: "mario's bday bash", id: 1},
-    {title: "toads's bday bash", id: 2},
-    {title: "peachy's bday bash", id: 3},
+    
   ])
 
-console.log(events)
+const addEvent = (event) => {
+  setEvents((prevEvents) => {
+    return [...prevEvents, event]
+  })
+  setShowModal(false)
+}
+
+console.log('Show Modal is: ' + showModal)
+
+
+const handleClose = () => {
+  setShowModal(false)
+}
 
 const handleClick = (id) => {
   setEvents((prevEvents) => {
@@ -27,9 +43,12 @@ const handleClick = (id) => {
 
 }
 
+const subtitle = "All the best of best events best"
+
   return (
     <div className="App">
-     
+      
+     <Title title="Events in Your Area" subtitle={subtitle} />
      {showEvents && (
       <div>
       <button onClick ={() => setShowEvents (false) }>hide events</button>
@@ -43,12 +62,14 @@ const handleClick = (id) => {
       </div>
       )}
 
-      {showEvents && events.map((event, index ) => (
-        <div key={event.id}> 
-          <h2>{index} - {event.title} </h2>
-          <button onClick ={() => { handleClick(event.id)}}> delete event </button>
-        </div>
-      ))}
+      {showEvents && <EventList events={events} handleClick={handleClick} /> }
+
+      <br></br>
+      <button onClick= {() => setShowModal(true) }> Add New Event</button>
+      {showModal && <Modal handleClose ={handleClose}>
+        
+        <NewEventForm addEvent = {addEvent}/>
+      </Modal>}
     </div>
   );
 }
