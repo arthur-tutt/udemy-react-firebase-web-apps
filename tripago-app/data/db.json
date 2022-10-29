@@ -1,0 +1,23 @@
+{
+    "trips": [
+        {
+            "title": "venice",
+            "price": "cheapo",
+            "id": "1",
+            "location": "europe"
+        },
+        {
+            "title": "paris",
+            "price": "try-hard",
+            "id": "2",
+            "location": "europe"
+        },
+        {
+            "title": "new york",
+            "price": "nice guy",
+            "id": "3",
+            "location": "usa"
+        }
+    ]
+
+}
